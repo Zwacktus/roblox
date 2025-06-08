@@ -1,1 +1,22 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Webhook-Empfang</title>
+</head>
+<body>
+    <h1>Empfangene Webhook-Daten</h1>
+    <pre id="output">Warte auf Daten...</pre>
 
+    <script>
+        // Simulierte Backend-Funktion zum Abfangen von POST-Anfragen
+        async function getWebhookData() {
+            const response = await fetch("webhook-data.json"); // Beispiel-Datei
+            const data = await response.json();
+            document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+        }
+
+        setInterval(getWebhookData, 5000); // Alle 5 Sekunden aktualisieren
+    </script>
+</body>
+</html>
